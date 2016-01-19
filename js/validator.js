@@ -21,9 +21,9 @@ var reverser = function(xs) {
     return reverser(tail(xs)).concat(head);
 };
 
-var reducer = function(xs) {
+var adder = function(xs) {
     return xs.reduce((prev, curr) => {
-        return prev + parseInt(Array.isArray(curr) ? reducer(curr) : curr);
+        return prev + parseInt(Array.isArray(curr) ? adder(curr) : curr);
     }, 0);
 };
 
@@ -49,7 +49,7 @@ var validate = function(numToValidate) {
     if (num.length !== 16) {
         return new Error("invalidnumber");
     }
-    let finalSum = reducer(doubleXer(reverser(num), 0));
+    let finalSum = adder(doubleXer(reverser(num), 0));
 
     //console.log(validationList);
     console.log(finalSum);
